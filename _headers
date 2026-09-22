@@ -1,0 +1,17 @@
+# Portable static-host security policy translated from the Site's runtime
+# middleware and Next configuration. Supported by Cloudflare Pages, Netlify,
+# and other hosts that recognize the _headers convention.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+  X-Frame-Options: SAMEORIGIN
+
+# Versioned build assets are content-hashed and safe to cache permanently.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Product images are stable but may be replaced in future exports.
+/images/*
+  Cache-Control: public, max-age=2592000
